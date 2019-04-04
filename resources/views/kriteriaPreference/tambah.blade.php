@@ -15,13 +15,13 @@
 
                     {{-- <h4></h4> --}}
                     <form action="{{ route('criteriaPreference.store') }}" method="post">
-                        <input type="hidden" name="_method" value="put" autofocus>
+                        <input type="hidden" name="_method" value="put">
                         {{ csrf_field() }}
 
                         <div class="row mb-3">
                             <div class="ml-3 form-inline">
-                                <input type="text" name="judul_kriteria" placeholder="Judul kriteria" required="required"
-                                class="form-control form-control-sm mr-1">
+                                <input type="text" name="judul" placeholder="Judul kriteria" required="required"
+                                class="form-control form-control-sm mr-1" autofocus>
                                 <select id="n" name="n" class="custom-select custom-select-sm mr-1">
                                     <option value="" selected="selected" disabled="disabled" hidden="hidden">Pilih jumlah kriteria</option>
                                     <option value="2">2-Dua</option>

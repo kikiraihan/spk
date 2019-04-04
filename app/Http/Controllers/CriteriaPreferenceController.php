@@ -47,15 +47,15 @@ class CriteriaPreferenceController extends Controller
         $kriteria=json_encode($kriteria);
 
         //penyimpanan
-        // $preference=new CriteriaPreference;
-        // $preference->judul=$request->judul;//judul
-        // $preference->ordo=$request->n;//ordo
-        // $preference->matriks=$martiks;//matriks
-        // $preference->matriksNormalised=$request->matriksNormalised;//matriksNormalised
-        // $preference->kriteria=$kriteria;//kriteria,jenis,bobot
-        // $preference->save();
+        $preference=new CriteriaPreference;
+        $preference->judul=$request->judul;//judul
+        $preference->ordo=$request->n;//ordo
+        $preference->matriks=$martiks;//matriks
+        $preference->matriksNormalised=$request->matriksNormalised;//matriksNormalised
+        $preference->kriteria=$kriteria;//kriteria,jenis,bobot
+        $preference->save();
 
-        // dd($kriteria);
+        dd($request->all());
 
 
 

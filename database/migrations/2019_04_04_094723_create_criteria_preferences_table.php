@@ -17,9 +17,9 @@ class CreateCriteriaPreferencesTable extends Migration
             $table->increments('id');
             $table->string('judul');
             $table->tinyInteger('ordo');
+            $table->string('kriteria');
             $table->string('matriks');
             $table->string('matriksNormalised');
-            $table->string('kriteria');
             $table->timestamps();
         });
     }
