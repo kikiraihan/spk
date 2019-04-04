@@ -70,11 +70,12 @@ a:focus {
     background: rgb(255, 255, 255);
     color: rgb(104, 104, 104);
     transition: all 0.3s;
-    margin-left: -190px;
+
 }
 
 #sidebar.active {
     margin-left: 0px;
+    margin-left: -190px;
     /* min-width: 70px;
     max-width: 70px; */
 }

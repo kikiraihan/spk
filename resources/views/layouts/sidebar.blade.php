@@ -11,7 +11,7 @@
             <a href="#homeSubmenu" >Home</a>
         </li>
         <li>
-            <a href="{{ route('criteriaPreference.create') }}">Criteria-Preference</a>
+            <a href="{{ route('criteriaPreference') }}">Criteria-Preference</a>
         </li>
         <li>
             <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>

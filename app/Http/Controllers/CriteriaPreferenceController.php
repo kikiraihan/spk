@@ -10,7 +10,9 @@ class CriteriaPreferenceController extends Controller
 
     public function index()
     {
-        //
+        $preference=CriteriaPreference::all();
+
+        return view('kriteriaPreference.index',compact(['preference']));
     }
 
     /**
@@ -55,11 +57,7 @@ class CriteriaPreferenceController extends Controller
         $preference->kriteria=$kriteria;//kriteria,jenis,bobot
         $preference->save();
 
-        dd($request->all());
-
-
-
-
+        return redirect()->route('criteriaPreference');
     }
 
     /**
