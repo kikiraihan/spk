@@ -62,6 +62,11 @@
                 $('#content').css('width','calc(100%-250px)');
             });
         });
+
+        $(function() {
+            $('#sidebar a[href~="' + location.href + '"]').parents('li').addClass('active');
+        });
+
     </script>
 
     @yield('script-halaman')

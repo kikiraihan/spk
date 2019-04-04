@@ -7,13 +7,13 @@
 
     <ul class="list-unstyled components">
 
-        <li class="active">
-            <a href="#homeSubmenu" >Home</a>
+        <li >
+            <a href="{{ route('home') }}" >Home</a>
         </li>
         <li>
             <a href="{{ route('criteriaPreference') }}">Criteria-Preference</a>
         </li>
-        <li>
+        {{-- <li>
             <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
             <ul class="collapse list-unstyled" id="pageSubmenu">
                 <li>
@@ -29,7 +29,8 @@
         </li>
         <li>
             <a href="#">Portfolio</a>
-        </li>
+        </li> --}}
+
         <li>
             <a  href="{{ route('logout') }}"
             onclick="event.preventDefault();

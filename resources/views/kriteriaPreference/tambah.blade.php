@@ -1,6 +1,6 @@
 @extends('layouts.app',[
 'title'=>'new criteria preference',
-'bodyStyle'=>"font-family: 'Arial', sans-serif;font-size: 1rem"
+'bodyStyle'=>""
 ])
 
 @section('content')

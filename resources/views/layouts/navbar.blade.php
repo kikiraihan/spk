@@ -6,8 +6,9 @@
             {{-- <i class="fas fa-bars"></i> --}}
             {{-- <span class="navbar-toggler-icon"></span> --}}
         </a>
-        <a class="navbar-brand text-uppercase " href="#" style="font-family: 'sans'">
-            {{ config('app.name', 'Laravel') }}
+        <a class="text-uppercase small" href="#" style="font-family: 'sans'">
+            {{-- {{ config('app.name', 'Laravel') }}  --}}
+            Rekomendasi - Menantu Idaman
         </a>
 
 

@@ -1,6 +1,6 @@
 @extends('layouts.app',[
 'title'=>'new criteria preference',
-'bodyStyle'=>"font-family: 'Arial', sans-serif;font-size: 1rem"
+'bodyStyle'=>""
 ])
 
 @section('content')
@@ -11,7 +11,7 @@
             <div class="card">
                 <div class="card-header pl-3">All Preference </div>
                 <div class="card-body container">
-                    <a href="{{ route('criteriaPreference.create') }}" class="btn btn-outline-secondary btn-sm border border-white-50">New +</a>
+                    <a href="{{ route('criteriaPreference.create') }}" class="btn btn-outline-primary btn-sm border border-white-50">New +</a>
                     <hr>
                     <table class="table table-striped table-borderless border border-white-50 text-center table-sm small">
                         <caption class="text-left ">Preferensi setiap kriteria</caption>
