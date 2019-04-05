@@ -95,11 +95,12 @@ class DecissionController extends Controller
         $solusiIdeal=$this->matriksSolusiIdeal($maxMin,$jenisaa);
 
         //jarak solusi positif(total per alternatif)
-        $dPositif=$this->distancePositif($matriksWeightedTopsis,$solusiIdeal);
+        $dPositif=$this->distance($matriksWeightedTopsis,$solusiIdeal,"positif");
+        $dNegatif=$this->distance($matriksWeightedTopsis,$solusiIdeal,"negatif");
 
         //jarak solusi negatif(total per alternatif)
 
-        dd($dPositif);
+        dd($dNegatif);
 
     }
 
@@ -177,6 +178,20 @@ class DecissionController extends Controller
         return $solusiIdeal;//array per Kriteria
     }
 
+    public function distance($weighted,$solusiIdeal,$psOrNg){
+        for($baris = 0; $baris < count($weighted); $baris++)
+        {
+            for($kolom = 0; $kolom < count($weighted[$baris])-1; $kolom++)//-1, kolom terakhir diabaikan
+            {
+                $weighted[$baris][$kolom] = pow($weighted[$baris][$kolom]-$solusiIdeal[$kolom][$psOrNg],2);
+            }
+        }
+
+        $hasil=$this->sumPerRowsDiakarkanTanpaKolomTerakhir($weighted);
+
+        return $hasil;
+    }
+
 
     public function sumPerRowsDiakarkanTanpaKolomTerakhir($matriks){
         for( $baris = 0; $baris < count($matriks); $baris++){
@@ -184,27 +199,10 @@ class DecissionController extends Controller
             for( $kolom = 0; $kolom < count($matriks[0])-1; $kolom++){
                 $sumRow[$baris]=$sumRow[$baris]+$matriks[$baris][$kolom];
             }
-            $sumRow[$baris]=$sumRow[$baris];
+            $sumRow[$baris]=sqrt($sumRow[$baris]);
         }
         return $sumRow;//array sumRowsBerpangkat per Row
     }
-
-
-
-    public function distancePositif($weighted,$solusiIdeal){
-        for($baris = 0; $baris < count($weighted); $baris++)
-        {
-            for($kolom = 0; $kolom < count($weighted[$baris])-1; $kolom++)//-1, kolom terakhir diabaikan
-            {
-                $weighted[$baris][$kolom] = $weighted[$baris][$kolom]-$solusiIdeal[$kolom]['positif'];
-            }
-        }
-
-        $hasil=$this->sumPerRowsDiakarkanTanpaKolomTerakhir($weighted);
-
-        return $weighted;
-    }
-
 
 
 
