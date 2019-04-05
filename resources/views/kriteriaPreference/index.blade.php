@@ -14,7 +14,7 @@
                     <a href="{{ route('criteriaPreference.create') }}" class="btn btn-outline-primary btn-sm border border-white-50">New +</a>
                     <hr>
                     <table class="table table-striped table-borderless border border-white-50 text-center table-sm small">
-                        <caption class="text-left ">Preferensi setiap kriteria</caption>
+                        <caption class="text-left ">Preferensi kriteria pada beberapa kondisi/kasus.</caption>
                         <thead class="thead-light text-center">
                             <tr>
                                 <th>No</th>

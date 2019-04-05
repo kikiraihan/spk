@@ -18,7 +18,7 @@ function tampilInputMatriks(matriks, kriteria){
 	$("#inputMatriks").empty();
 	$("#inputMatriks").append("<hr />");
 	tampilPenjelasan();
-	
+
 	// untuk baris Kolom kriteria atas
 	$("#inputMatriks").append("<div id='row-pertama' class='row align-middle '></div>");
 	for(var i = 0; i < kriteria.length; i++){
@@ -30,11 +30,11 @@ function tampilInputMatriks(matriks, kriteria){
 
 	for(var i = 0; i < matriks.length; i++) {
 		$("#inputMatriks").append("<div id='row"+i+"' class='row align-middle '></div>");
-		
+
 		$("#inputMatriks #row"+i).append(
 			"<div class='text-right pr-3 d-inline col-2 col-md-1 form-control form-control-sm form-control-plaintext align-middle font-weight-bold' >"+kriteria[i]+"</div>"
 		);
-		
+
 		for(var z = 0; z < matriks[i].length; z++) {
 
 			$("#inputMatriks #row"+i).append(// tampil nilai matriks
@@ -46,7 +46,7 @@ function tampilInputMatriks(matriks, kriteria){
 	}
 
 	$("#inputMatriks").append("<a href='#wadahMatriksNormalised' onclick='btnNormalise("+matriks.length+")' class='mt-3 btn btn-secondary btn-sm'>Normalise</a>");
-	
+
 }
 
 function tampilInputKriteria(n){
@@ -56,7 +56,7 @@ function tampilInputKriteria(n){
 			"<div class='input-group input-group-sm pb-2'>"+
 				"<div class='input-group-prepend'><span class='input-group-text'>"+ (parseInt(i) + 1) +"</span></div>"+
 				"<input class='kriteria form-control form-control-sm' type='text' name='kriteria["+i+"]' placeholder='masukan kriteria'/>"+
-				
+
 				"<div class='input-group-append'>"+
 					"<select name='jenis["+i+"]' class='input-group-text form-select form-select-sm pb-2 '>"+
 						"<option value='Benefit' selected='selected'>Benefit</option>"+
@@ -76,11 +76,11 @@ function tampilMatriksNormalised(matriksNormalised,cr,divLocation){
 	$(divLocation).append("<hr/><h5 class='pb-2'>Hasil Normalisasi : CR="+cr.toFixed(2)+"</h5>");
 	$(divLocation).append("<div class='row'><div class='col-md-8'><table class='table table-striped table-bordered'><tbody></tbody></table></div></div>");
 
-	for(var i = 0; i < matriksNormalised.length; i++) 
+	for(var i = 0; i < matriksNormalised.length; i++)
 	{
 		$(divLocation+" table tbody").append("<tr id='rowTable"+i+"'></tr>");
-		
-		for(var z = 0; z < matriksNormalised[i].length; z++) 
+
+		for(var z = 0; z < matriksNormalised[i].length; z++)
 		{
 			$("#rowTable"+i).append(
 				"<td>"+matriksNormalised[i][z].toFixed(2)+"</td>"
@@ -94,7 +94,7 @@ function tampilMatriksNormalised(matriksNormalised,cr,divLocation){
 function tampilBobot(bobot,kriteria,divLocation){
 	$(divLocation).empty();
 	$(divLocation).append("<ul class='list-group list-group-sm'></ul>");
-	for(var z = 0; z < bobot.length; z++) 
+	for(var z = 0; z < bobot.length; z++)
 	{
 		$(divLocation+" ul").append(
 			"<li class='list-group-item text-left font-weight-bold'>"+kriteria[z]+" : <span class='pull-right small badge badge-primary'>"+bobot[z].toFixed(2)+"</span></li>"
@@ -113,7 +113,7 @@ function tampilBobot(bobot,kriteria,divLocation){
 
 
 
-/*---- OPERASI MATRIKS ----*/ 
+/*---- OPERASI MATRIKS ----*/
 
 
 function BuatMatriksKosong(ordo){
@@ -130,7 +130,7 @@ function buatMatriks(ordo){
 
 	for (var baris = 0; baris < ordo; baris++) {//isi nilai awal matriks
 		for (var kolom = 0; kolom < ordo; kolom++) {
-			if (baris==kolom) 
+			if (baris==kolom)
 			{
 				matriks[baris][kolom]=1;
 			}
@@ -189,7 +189,7 @@ function averageOrdoSatu(matriks){
 
 
 
-/*---- OPERASI AHP ----*/ 
+/*---- OPERASI AHP ----*/
 
 function normalise(matriks,sumCol){
 	normalised=BuatMatriksKosong(matriks.length);
@@ -206,7 +206,7 @@ function normalise(matriks,sumCol){
 
 function cekKonsistensi(matriks,bobotKriteria){
 	//weighted sum value(hasil kali matriks pairwaise dan matriks bobotkriteria)
-	var weightedPairwaise=[] 
+	var weightedPairwaise=[]
 	for(var i = 0; i < matriks.length; i++){
 		weightedPairwaise[i]=0;
 		for(var z = 0; z < matriks.length; z++){
@@ -262,7 +262,7 @@ function btnNormalise(ordo){
 
 	//hitung bobot/w/vector/rata2 baris
 	var bobotKriteria=averageRows(matriksNormalised);
-	
+
 	//cek konsistensi
 	var cek=cekKonsistensi(matriks,bobotKriteria);
 	if (cek[0])
@@ -275,7 +275,7 @@ function btnNormalise(ordo){
 		//array normasilsasi dan bobotKriteria buatkan hidden input;
 		$("#wadahMatriksNormalised").append("<input type='hidden' name='matriksNormalised' value="+JSON.stringify(matriksNormalised)+" />")
 		$("#wadahMatriksNormalised").append("<input type='hidden' name='bobotKriteria' value="+JSON.stringify(bobotKriteria)+" />")
-		
+
 		//tampil tombol submit form
 		$("#wadahMatriksNormalised").append("<button type='submit' class='mt-3 btn btn-sm btn-primary'>Simpan Preference</button>");
 	}
@@ -290,7 +290,7 @@ function btnNormalise(ordo){
 	//console.log(cekKonsistensi(matriks,bobotKriteria));
 	console.log(JSON.stringify(matriksNormalised))
 	console.log(JSON.stringify(bobotKriteria))
-	
+
 
 }
 
@@ -313,7 +313,7 @@ function btnProceed() {
 		 $(".kriteria").each(function(){
 		 	kriteria.push($(this).val());
 		 });
-		
+
 		var x = $("#n").children("option:selected").val();
 		var matriks = buatMatriks(x);
 
@@ -327,7 +327,7 @@ function btnProceed() {
 // 	// if (event.keyCode === 13) {
 // 	// 	btnProceed()
 // 	// }
-	
+
 // 	// var x = $("#n").first().val();// var x = $("#n")[0].value;
 // 	tampilInputKriteria(x);
 // });

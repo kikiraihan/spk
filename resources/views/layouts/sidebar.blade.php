@@ -10,8 +10,14 @@
         <li >
             <a href="{{ route('home') }}" >Home</a>
         </li>
+        <li >
+            <a href="{{ route('mahasiswa') }}" >Mahasiswa</a>
+        </li>
         <li>
             <a href="{{ route('criteriaPreference') }}">Criteria-Preference</a>
+        </li>
+        <li>
+            <a href="{{ route('decission') }}">Decission Making</a>
         </li>
         {{-- <li>
             <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>

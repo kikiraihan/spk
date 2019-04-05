@@ -26,3 +26,22 @@ Route::group(['prefix' => 'criteria'], function() {
     Route::get('/{id}', 'CriteriaPreferenceController@show')->name('criteriaPreference.show');
     Route::put('/', 'CriteriaPreferenceController@store')->name('criteriaPreference.store');
 });
+
+
+//Mahasiswa
+Route::group(['prefix' => 'mahasiswa'], function() {
+    Route::get('/', 'MahasiswaController@index')->name('mahasiswa');
+    Route::get('/search', 'MahasiswaController@search')->name('mahasiswa.search');
+    Route::get('/create', 'MahasiswaController@create')->name('mahasiswa.create');
+    Route::get('/{id}', 'MahasiswaController@show')->name('mahasiswa.show');
+    Route::put('/', 'MahasiswaController@store')->name('mahasiswa.store');
+});
+
+//Decission
+Route::group(['prefix' => 'decission'], function() {
+    Route::get('/', 'DecissionController@index')->name('decission');
+    Route::put('/generate', 'DecissionController@generate')->name('decission.generate');
+    Route::get('/create', 'DecissionController@create')->name('decission.create');
+    Route::get('/{id}', 'DecissionController@show')->name('decission.show');
+    Route::put('/', 'DecissionController@store')->name('decission.store');
+});
