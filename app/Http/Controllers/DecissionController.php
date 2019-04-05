@@ -49,63 +49,42 @@ class DecissionController extends Controller
             $i++;
         }
 
-        $matriksaa[0][0]=3;
-        $matriksaa[0][1]=3;
-        $matriksaa[0][2]=4;
-        $matriksaa[0][3]=5;
-        $matriksaa[0][4]=null;
-
-        $matriksaa[1][0]=4;
-        $matriksaa[1][1]=3;
-        $matriksaa[1][2]=4;
-        $matriksaa[1][3]=2;
-        $matriksaa[1][4]=null;
-
-        $matriksaa[2][0]=2;
-        $matriksaa[2][1]=5;
-        $matriksaa[2][2]=3;
-        $matriksaa[2][3]=3;
-        $matriksaa[2][4]=null;
-
-        $matriksaa[3][0]=3;
-        $matriksaa[3][1]=3;
-        $matriksaa[3][2]=5;
-        $matriksaa[3][3]=4;
-        $matriksaa[3][4]=null;
-
-        $matriksaa[4][0]=4;
-        $matriksaa[4][1]=4;
-        $matriksaa[4][2]=3;
-        $matriksaa[4][3]=3;
-        $matriksaa[4][4]=null;
-
-        $bobotaa=[4,5,2,3];
-        $jenisaa=['Cost','Benefit','Benefit','Benefit'];
-
-
         //normalisasi
-        $matriksPembagi=$this->sumPerColumnsBerpangkatDiakarkanTanpaKolomTerakhir($matriksaa);
-        $matriksNormalisedTopsis=$this->normalise($matriksaa,$matriksPembagi);
+        $matriksPembagi=$this->sumPerColumnsBerpangkatDiakarkanTanpaKolomTerakhir($matriks);
+        $matriksNormalisedTopsis=$this->normalise($matriks,$matriksPembagi);
 
         //normalisasi Terbobot
-        $matriksWeightedTopsis=$this->normalisedWeighted($matriksNormalisedTopsis,$bobotaa);
+        $matriksWeightedTopsis=$this->normalisedWeighted($matriksNormalisedTopsis,$bobot);
         $maxMin=$this->kriteriaMaxMin($matriksWeightedTopsis);
 
-        //matriks solusi ideal
-        $solusiIdeal=$this->matriksSolusiIdeal($maxMin,$jenisaa);
+        //matriks solusi ideal (array kriteria['jenis','positif','negatif'])
+        $solusiIdeal=$this->matriksSolusiIdeal($maxMin,$jenis);
 
-        //jarak solusi positif(total per alternatif)
+        //jarak solusi positif dan negatig (total per alternatif)
         $dPositif=$this->distance($matriksWeightedTopsis,$solusiIdeal,"positif");
         $dNegatif=$this->distance($matriksWeightedTopsis,$solusiIdeal,"negatif");
 
-        //jarak solusi negatif(total per alternatif)
 
-        dd($dNegatif);
+        //nilai preferensi/akhir/rank
+        $rank=$this->nilaiPreferensi($dPositif,$dNegatif,$matriksWeightedTopsis);
+        arsort($rank);
+
+        dd($rank);
 
     }
 
 
 
+
+
+
+    /**
+     *===========================================================
+     *                     FUNGSI MANIPULASI DATA
+     *===========================================================
+     * */
+
+     //MATRIKS
     public function normalisedWeighted($normalised,$bobot){
         for($baris = 0; $baris < count($normalised); $baris++)
         {
@@ -129,8 +108,6 @@ class DecissionController extends Controller
         return $matriks;
     }
 
-
-
     public function sumPerColumnsBerpangkatDiakarkanTanpaKolomTerakhir($matriks){
         $sumCol=[];
         for( $kolom = 0; $kolom < count($matriks[0])-1; $kolom++){//-1, kolom terakhir diabaikan
@@ -143,6 +120,20 @@ class DecissionController extends Controller
         }
         return $sumCol;//array sumColumnsBerpangkat per Column
     }
+
+    public function sumPerRowsDiakarkanTanpaKolomTerakhir($matriks){
+        for( $baris = 0; $baris < count($matriks); $baris++){
+            $sumRow[$baris]=0;
+            for( $kolom = 0; $kolom < count($matriks[0])-1; $kolom++){
+                $sumRow[$baris]=$sumRow[$baris]+$matriks[$baris][$kolom];
+            }
+            $sumRow[$baris]=sqrt($sumRow[$baris]);
+        }
+        return $sumRow;//array sumRowsBerpangkat per Row
+    }
+
+
+
 
 
 
@@ -189,22 +180,18 @@ class DecissionController extends Controller
 
         $hasil=$this->sumPerRowsDiakarkanTanpaKolomTerakhir($weighted);
 
-        return $hasil;
+        return $hasil;//ARRAY per baris
     }
 
-
-    public function sumPerRowsDiakarkanTanpaKolomTerakhir($matriks){
-        for( $baris = 0; $baris < count($matriks); $baris++){
-            $sumRow[$baris]=0;
-            for( $kolom = 0; $kolom < count($matriks[0])-1; $kolom++){
-                $sumRow[$baris]=$sumRow[$baris]+$matriks[$baris][$kolom];
-            }
-            $sumRow[$baris]=sqrt($sumRow[$baris]);
+    public function nilaiPreferensi($dPositif,$dNegatif,$matriksUntukAmbilID){
+        for($baris = 0; $baris < count($dPositif); $baris++)
+        {
+            $id=$matriksUntukAmbilID[$baris][count($matriksUntukAmbilID[0])-1];//ambil ID
+            $hasil[$id]['nilai']=$dNegatif[$baris]/($dPositif[$baris]+$dNegatif[$baris]);
+            // $hasil[$baris]['id']=$matriksUntukAmbilID[$baris][count($matriksUntukAmbilID[0])-1];
         }
-        return $sumRow;//array sumRowsBerpangkat per Row
+        return $hasil;//ARRAY per baris
     }
-
-
 
 
 
@@ -296,3 +283,48 @@ class DecissionController extends Controller
         //
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+//dummy data dari contoh ada di excell
+
+// $matriksaa[0][0]=3;
+// $matriksaa[0][1]=3;
+// $matriksaa[0][2]=4;
+// $matriksaa[0][3]=5;
+// $matriksaa[0][4]=null;
+
+// $matriksaa[1][0]=4;
+// $matriksaa[1][1]=3;
+// $matriksaa[1][2]=4;
+// $matriksaa[1][3]=2;
+// $matriksaa[1][4]=null;
+
+// $matriksaa[2][0]=2;
+// $matriksaa[2][1]=5;
+// $matriksaa[2][2]=3;
+// $matriksaa[2][3]=3;
+// $matriksaa[2][4]=null;
+
+// $matriksaa[3][0]=3;
+// $matriksaa[3][1]=3;
+// $matriksaa[3][2]=5;
+// $matriksaa[3][3]=4;
+// $matriksaa[3][4]=null;
+
+// $matriksaa[4][0]=4;
+// $matriksaa[4][1]=4;
+// $matriksaa[4][2]=3;
+// $matriksaa[4][3]=3;
+// $matriksaa[4][4]=null;
+
+// $bobotaa=[4,5,2,3];
+// $jenisaa=['Cost','Benefit','Benefit','Benefit'];
