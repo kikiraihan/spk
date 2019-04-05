@@ -69,7 +69,23 @@ class DecissionController extends Controller
         $rank=$this->nilaiPreferensi($dPositif,$dNegatif,$matriksWeightedTopsis);
         arsort($rank);
 
-        dd($rank);
+        //get and ORDER by RANK
+        //make string "FIELD(id,'31','2','2')" that included by rank key
+        $first='FIELD(id';$middle="";$last=")";
+        foreach ($rank as $key => $value) $middle.=",'".$key."'";
+
+        $hasil=Mahasiswa::orderByRaw($first.$middle.$last)->get();
+
+
+        unset($title[count($title)-1]);//hapus id dari title
+        // dd($dNegatif);
+        return view('decission.result',compact([
+            'hasil','rank','matriks',
+            'matriksWeightedTopsis',
+            'solusiIdeal','title',
+            'dNegatif',
+            'dPositif',
+        ]));
 
     }
 

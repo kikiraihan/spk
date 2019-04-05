@@ -11,8 +11,8 @@
             <div class="card">
                 <div class="card-header pl-3">All Mahasiswa </div>
                 <div class="card-body container">
-                    <a href="{{ route('mahasiswa.create') }}" class="btn btn-outline-primary btn-sm border border-white-50">New +</a>
-                    <hr>
+                    {{-- <a href="{{ route('mahasiswa.create') }}" class="btn btn-outline-primary btn-sm border border-white-50">New +</a> --}}
+                    {{-- <hr> --}}
                     <table class="table table-striped table-borderless border border-white-50 table-sm small">
                         <caption class="text-left ">Data setiap mahasiswa</caption>
                         <thead class="thead-light text-center">
@@ -37,12 +37,12 @@
                                 <td>{{ $m->nama }}</td>
                                 <td>{{ $m->jurusan }}</td>
                                 <td>{{ $m->alamat }}</td>
-                                <td>{{ $m->agama }}</td>
-                                <td>{{ $m->toefl }}</td>
-                                <td>{{ $m->ipk }}</td>
-                                <td>{{ $m->masak }}</td>
-                                <td>{{ $m->kecantikan }}</td>
-                                <td>+-</td>
+                                <td class="text-center">{{ $m->agama }}</td>
+                                <td class="text-center">{{ $m->toefl }}</td>
+                                <td class="text-center">{{ $m->ipk }}</td>
+                                <td class="text-center">{{ $m->masak }}</td>
+                                <td class="text-center">{{ $m->kecantikan }}</td>
+                                <td class="text-center">+-</td>
                             </tr>
                             @endforeach
                         </tbody>
