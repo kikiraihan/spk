@@ -13,13 +13,15 @@ class User extends Authenticatable
 
 
     protected $fillable = [
-        'name', 'email', 'password',
+        'kategori', 'name', 'email', 'password',
     ];
 
     protected $hidden = [
         'password', 'remember_token',
     ];
 
+
+    //relasi
     public function penilaianAlternatif(){
         return $this->hasMany('App\Model\PenilaianAlternatif','id_penilai');//boleh null
     }

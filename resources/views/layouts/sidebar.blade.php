@@ -10,15 +10,25 @@
         <li >
             <a href="{{ route('home') }}" >Home</a>
         </li>
+
+        @role('Penilai')
+        <li >
+            <a href="{{ route('criteriaPreference') }}" >Penilaian</a>
+        </li>
+        @endrole
+
         <li >
             <a href="{{ route('mahasiswa') }}" >Mahasiswa</a>
         </li>
+
+        @role('Admin')
         <li>
             <a href="{{ route('criteriaPreference') }}">Criteria-Preference</a>
         </li>
         <li>
             <a href="{{ route('decission') }}">Decission Making</a>
         </li>
+        @endrole
         {{-- <li>
             <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
             <ul class="collapse list-unstyled" id="pageSubmenu">

@@ -14,6 +14,7 @@ class CriteriaPreference extends Model
         "kriteria",
     ];
 
+    //relasi
     public function penilaianAlternatif(){
         return $this->hasMany('App\Model\PenilaianAlternatif','id_preferensi');//boleh null
     }
