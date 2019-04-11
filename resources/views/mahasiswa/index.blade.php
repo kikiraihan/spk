@@ -18,14 +18,14 @@
                         <thead class="thead-light text-center">
                             <tr>
                                 <th>No</th>
-                                <th>nama</th>
-                                <th>jurusan</th>
-                                <th>alamat</th>
-                                <th>agama</th>
+                                @foreach ($columns as $col)
+                                <th>{{ $col }}</th>
+                                @endforeach
+                                {{-- <th>agama</th>
                                 <th>toefl</th>
                                 <th>ipk</th>
                                 <th>masak</th>
-                                <th>kecantikan</th>
+                                <th>kecantikan</th> --}}
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -34,14 +34,14 @@
                             @foreach ($mahasiswa as $m)
                             <tr>
                                 <th>{{ ++$no }}</th>
-                                <td>{{ $m->nama }}</td>
-                                <td>{{ $m->jurusan }}</td>
-                                <td>{{ $m->alamat }}</td>
-                                <td class="text-center">{{ $m->agama }}</td>
+                                @foreach ($columns as $col)
+                                <td>{{ $m->$col }}</td>
+                                @endforeach
+                                {{-- <td class="text-center">{{ $m->agama }}</td>
                                 <td class="text-center">{{ $m->toefl }}</td>
                                 <td class="text-center">{{ $m->ipk }}</td>
                                 <td class="text-center">{{ $m->masak }}</td>
-                                <td class="text-center">{{ $m->kecantikan }}</td>
+                                <td class="text-center">{{ $m->kecantikan }}</td> --}}
                                 <td class="text-center">+-</td>
                             </tr>
                             @endforeach

@@ -7,7 +7,7 @@
         @endauth
         <a class="text-uppercase small" href="#" style="font-family: 'sans'">
             {{-- {{ config('app.name', 'Laravel') }}  --}}
-            SISPEK - Mahasiswa
+            SISPEK - Mahasiswa | Multicase Student Recomendation
         </a>
 
 

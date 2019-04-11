@@ -16,6 +16,7 @@ class CreateCriteriaPreferencesTable extends Migration
         Schema::create('criteria_preferences', function (Blueprint $table) {
             $table->increments('id');
             $table->string('judul');
+            // $table->string('model');
             $table->tinyInteger('ordo');
             $table->string('matriks',900);
             $table->string('matriksNormalised',900);

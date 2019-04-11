@@ -19,10 +19,8 @@ class Mahasiswa extends Model
     ];
 
 
-
-
-
-
-
+    public function penilaianAlternatif(){
+        return $this->hasMany('App\Model\PenilaianAlternatif','id_mahasiswa');//boleh null
+    }
 
 }
