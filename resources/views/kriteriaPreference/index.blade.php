@@ -42,9 +42,9 @@
                                     @php $matriks=json_decode($pre->matriks) @endphp
                                     @for ($i = 0; $i < count($matriks); $i++)
                                         @for ($z = 0; $z < count($matriks[$i]); $z++)
-                                            [ {{$matriks[$i][$z]}} ]
+                                            <h6 class="badge badge-secondary badge-pill p-2" style="width: 30px">{{$matriks[$i][$z]}}</h6>
                                         @endfor
-                                        ,<br>
+                                        <br>
                                     @endfor
                                 </td>
                                 <td>{{ $pre->ordo }}</td>

@@ -1,14 +1,13 @@
 <nav class="navbar navbar-expand-md navbar-light navbar-laravel m-0 px-2">
     <div class="container-fluid px-2">
+        @auth
         <a class="pl-0 pr-3 font-weight-bold" href="#" id="sidebarCollapse" role="button">
-            {{-- <i class="pe-7s-menu"></i> --}}
-            [][]
-            {{-- <i class="fas fa-bars"></i> --}}
-            {{-- <span class="navbar-toggler-icon"></span> --}}
+            ☰
         </a>
+        @endauth
         <a class="text-uppercase small" href="#" style="font-family: 'sans'">
             {{-- {{ config('app.name', 'Laravel') }}  --}}
-            Rekomendasi - Menantu Idaman
+            SISPEK - Mahasiswa
         </a>
 
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Model\Mahasiswa;
 use App\Model\CriteriaPreference;
+use Illuminate\Support\Facades\DB;
 
 class DecissionController extends Controller
 {
@@ -15,6 +16,14 @@ class DecissionController extends Controller
      */
     public function index()
     {
+        // $tables=DB::select('SHOW TABLES');
+        // foreach ($tables as $table) {
+        //     foreach ($table as $key => $value) {
+        //         $listTable[]=$value;
+        //     }
+        // }
+        // dd($listTable);
+
         $preference=CriteriaPreference::all();
         $mahasiswa=Mahasiswa::all();
 
@@ -72,10 +81,12 @@ class DecissionController extends Controller
         //get and ORDER by RANK
         //make string "FIELD(id,'31','2','2')" that included by rank key
         $first='FIELD(id';$middle="";$last=")";
-        foreach ($rank as $key => $value) $middle.=",'".$key."'";
+        foreach ($rank as $key => $value) $middle.=",'".$key."'";//itu berisi idtable
 
-        $hasil=Mahasiswa::orderByRaw($first.$middle.$last)->get();
-
+        //kolom yang di get
+        foreach($title as $t) $kolomGet[]=strtolower($t);
+        array_push($kolomGet,'nama');
+        $hasil=Mahasiswa::select($kolomGet)->orderByRaw($first.$middle.$last)->get();
 
         unset($title[count($title)-1]);//hapus id dari title
         // dd($dNegatif);
@@ -85,6 +96,7 @@ class DecissionController extends Controller
             'solusiIdeal','title',
             'dNegatif',
             'dPositif',
+            'kolomGet',
         ]));
 
     }

@@ -19,11 +19,11 @@ class CreateMahasiswasTable extends Migration
             $table->string('jurusan');
             $table->string('alamat');
 
-            $table->integer('agama');
-            $table->integer('toefl');
-            $table->integer('ipk');
-            $table->integer('masak');
-            $table->integer('kecantikan');
+            // $table->integer('agama');
+            // $table->integer('toefl');
+            // $table->integer('ipk');
+            // $table->integer('masak');
+            // $table->integer('kecantikan');
 
             $table->timestamps();
         });

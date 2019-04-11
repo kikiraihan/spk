@@ -22,6 +22,12 @@
                             <div class="ml-3 form-inline">
                                 <input type="text" name="judul" placeholder="Judul kriteria" required="required"
                                 class="form-control form-control-sm mr-1" autofocus>
+
+                                {{-- <select " name="table" class="custom-select custom-select-sm mr-1" required>
+                                    <option value="" selected="selected" disabled="disabled" hidden="hidden">Table Name</option>
+                                    <option class="m-2" value="Mahasiswa">Mahasiswa</option>
+                                </select> --}}
+
                                 <select id="n" name="n" class="custom-select custom-select-sm mr-1">
                                     <option value="" selected="selected" disabled="disabled" hidden="hidden">Pilih jumlah kriteria</option>
                                     <option value="2">2-Dua</option>

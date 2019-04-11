@@ -36,13 +36,13 @@
                             <div class='col-md-4'>
                                 <table class="table text-center table-striped table-bordered border border-white-50 table-sm small">
                                     <caption class="text-left ">Matriks Awal</caption>
-                                    {{-- <thead>
+                                    <thead>
                                         <tr>
                                             @foreach ($title as $t)
                                             <td>{{ $t }}</td>
                                             @endforeach
                                         </tr>
-                                    </thead> --}}
+                                    </thead>
                                     <tbody>
                                         @for ($i = 0; $i < count($matriks); $i++)
                                         <tr>
@@ -58,13 +58,13 @@
                             <div class='col-md-4'>
                                 <table class="table text-center table-striped table-bordered border border-white-50 table-sm small">
                                     <caption class="text-left ">Matriks Normalised <b>Weighted</b></caption>
-                                    {{-- <thead>
+                                    <thead>
                                         <tr>
                                             @foreach ($title as $t)
                                             <td>{{ $t }}</td>
                                             @endforeach
                                         </tr>
-                                    </thead> --}}
+                                    </thead>
                                     <tbody>
                                         @for ($i = 0; $i < count($matriksWeightedTopsis); $i++)
                                         <tr>
@@ -80,6 +80,12 @@
                             <div class='col-md-3 offset-md-1'>
                                 <table class="table text-center table-striped table-bordered border border-white-50 table-sm small">
                                     <caption class="text-left ">Matriks <b>D+</b> dan <b>D-</b></caption>
+                                    <thead>
+                                        <tr>
+                                            <td>D+</td>
+                                            <td>D-</td>
+                                        </tr>
+                                    </thead>
                                     <tbody>
                                         @for ($i = 0; $i < count($dNegatif); $i++)
                                         <tr>
@@ -150,16 +156,13 @@
                             <thead class="thead-light text-center">
                                 <tr>
                                     <th>No</th>
-                                    <th>nama</th>
-                                    <th>Rank</th>
-                                    <th>jurusan</th>
-                                    {{-- <th>alamat</th> --}}
+                                    <th>Bobot</th>
 
-                                    <th>agama</th>
-                                    <th>toefl</th>
-                                    <th>ipk</th>
-                                    <th>masak</th>
-                                    <th>kecantikan</th>
+                                    @foreach ($kolomGet as $kolom)
+                                    <th class="
+                                        {{ $kolom=='id'?'text-info font-weight-bold text-right':'text-center ' }}
+                                    ">{{ $kolom }}</td>
+                                    @endforeach
 
                                     <th>Action</th>
                                 </tr>
@@ -169,19 +172,14 @@
                                 @foreach ($hasil as $m)
                                 <tr>
                                     <th>{{ ++$no }}</th>
-                                    <td>
-                                        {{ $m->nama }}
-                                        <b class="text-secondary">(id-{{ $m->id }})</b>
-                                    </td>
-                                    <td>{{ $rank[$m->id]['nilai'] }}</td>
-                                    <td>{{ $m->jurusan }}</td>
-                                    {{-- <td>{{ $m->alamat }}</td> --}}
+                                    <td class="text-center">{{ $rank[$m->id]['nilai'] }}</td>
 
-                                    <td class="text-center">{{ $m->agama }}</td>
-                                    <td class="text-center">{{ $m->toefl }}</td>
-                                    <td class="text-center">{{ $m->ipk }}</td>
-                                    <td class="text-center">{{ $m->masak }}</td>
-                                    <td class="text-center">{{ $m->kecantikan }}</td>
+                                    @foreach ($kolomGet as $kolom)
+                                    <td class="
+                                        {{ $kolom=='id'?'text-info font-weight-bold text-right':'text-center ' }}
+                                    ">{{ $m->$kolom }}</td>
+                                    @endforeach
+
                                     <td class="text-center">+-</td>
                                 </tr>
                                 @endforeach
