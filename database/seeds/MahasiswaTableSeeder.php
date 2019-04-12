@@ -11,7 +11,7 @@ class MahasiswaTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Model\Mahasiswa::class,5)
+        factory(App\Model\Mahasiswa::class,8)
         ->create();
     }
 }

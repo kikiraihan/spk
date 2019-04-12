@@ -13,7 +13,7 @@
 
         @role('Penilai')
         <li >
-            <a href="{{ route('criteriaPreference') }}" >Penilaian</a>
+            <a href="{{ route('penilaianAlternatif') }}" >Penilaian</a>
         </li>
         @endrole
 

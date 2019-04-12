@@ -20,7 +20,7 @@
 
                         <div class="row mb-1">
                             <div class="ml-3 form-inline">
-                                <select " name="table" class="custom-select   mr-1">
+                                <select name="table" class="custom-select   mr-1">
                                     <option value="" selected="selected" disabled="disabled" hidden="hidden">Table Name</option>
                                         <option class="m-2" value="Mahasiswa">Mahasiswa</option>
                                 </select>

@@ -7,11 +7,12 @@ use App\Model\Mahasiswa;
 use App\Model\CriteriaPreference;
 use Illuminate\Support\Facades\DB;
 use App\Traits\manipulasiMatriksTopsis;
+use App\Traits\manipulasiModelPenilaianAlternatif;
 
 class DecissionController extends Controller
 {
 
-    use manipulasiMatriksTopsis;
+    use manipulasiMatriksTopsis, manipulasiModelPenilaianAlternatif;
 
     /**
      * Display a listing of the resource.
@@ -41,26 +42,36 @@ class DecissionController extends Controller
         // dd($request->all());
 
         //ambil bobot dan title
-        $preference=CriteriaPreference::find($request->preference);
+        $preference=CriteriaPreference::with('penilaianAlternatif')->find($request->preference);
+
+        //decode semua json nilai, menjadi collection
+        $this->decodeAllJsonNilai($preference);
+
+        $penilaianPerIdMahasiswa=$preference->penilaianAlternatif->groupBy('id_mahasiswa');//mahasiswa tpi cuma matriks
+
+
         foreach (json_decode($preference->kriteria) as $kri) {
             $bobot[]=$kri->bobot;
             $title[]=$kri->title;
             $jenis[]=$kri->jenis;
         }
-        array_push($title,'id');
-
-        $mahasiswa=Mahasiswa::all($title);
+        // array_push($title,'id');
+        // $mahasiswa=Mahasiswa::all($title);
 
 
         //buat matriks mahasiswa +id id kolom akhir
         $i=0;
-        foreach($mahasiswa as $m){
+        foreach($penilaianPerIdMahasiswa as $id_mahasiswa=>$penilaian)
+        {
             $z=0;
-            foreach($title as $t){
-                $matriks[$i][$z++]=$m->$t;
+            foreach($title as $t)
+            {
+                $matriks[$i][$z++]=$this->nilaiSebenarnyaPerTitle($penilaian,$t);
             }
+            $matriks[$i][$z++]=$id_mahasiswa;
             $i++;
         }
+        // dd($matriks);
 
         //normalisasi
         $matriksPembagi=$this->sumPerColumnsBerpangkatDiakarkanTanpaKolomTerakhir($matriks);
@@ -76,6 +87,7 @@ class DecissionController extends Controller
         //jarak solusi positif dan negatig (total per alternatif)
         $dPositif=$this->distance($matriksWeightedTopsis,$solusiIdeal,"positif");
         $dNegatif=$this->distance($matriksWeightedTopsis,$solusiIdeal,"negatif");
+        // dd($maxMin);
 
 
         //nilai preferensi/akhir/rank
@@ -88,11 +100,14 @@ class DecissionController extends Controller
         foreach ($rank as $key => $value) $middle.=",'".$key."'";//itu berisi idtable
 
         //kolom yang di get
-        foreach($title as $t) $kolomGet[]=strtolower($t);
-        array_push($kolomGet,'nama');
+        // foreach($title as $t) $kolomGet[]=strtolower($t);
+        $kolomGet=['id','nama'];
+        // array_push($kolomGet,'nama');
+        // array_push($kolomGet,'id');
         $hasil=Mahasiswa::select($kolomGet)->orderByRaw($first.$middle.$last)->get();
 
-        unset($title[count($title)-1]);//hapus id dari title
+        // dd($hasil);
+
         // dd($dNegatif);
         return view('decission.result',compact([
             'hasil','rank','matriks',
@@ -104,12 +119,6 @@ class DecissionController extends Controller
         ]));
 
     }
-
-
-
-
-
-
 
 
 
