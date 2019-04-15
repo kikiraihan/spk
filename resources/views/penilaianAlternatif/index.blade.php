@@ -73,7 +73,7 @@
                                 </td>
                                 <td>{{ $pre->ordo }}</td>
                                 <td>
-                                    <a href="{{ route('penilaianAlternatif.create', ['id_preferensi'=>$pre->id]) }}" class="btn btn-sm btn-secondary">Input</a>
+                                    <a href="{{ route('penilaianAlternatif.create', ['id_preferensi'=>$pre->id]) }}" class="btn btn-sm btn-info">Input+</a>
                                 </td>
                             </tr>
                             @endforeach

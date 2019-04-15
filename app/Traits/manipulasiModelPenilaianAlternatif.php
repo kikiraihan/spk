@@ -8,8 +8,9 @@ trait manipulasiModelPenilaianAlternatif
     public function nilaiSebenarnyaPerTitle($penilaianPerMahasiswaPerPenilai,$title){
         $isiNilai=0;
         foreach($penilaianPerMahasiswaPerPenilai as $penilai){
-            $isiNilai+=$penilai->nilai->$title;
+            $isiNilai=$isiNilai+$penilai->nilai->$title;
         }
+        // dd($isiNilai/count($penilaianPerMahasiswaPerPenilai));
         return $isiNilai/count($penilaianPerMahasiswaPerPenilai);
     }
 

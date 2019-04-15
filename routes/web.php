@@ -41,9 +41,18 @@ Route::group(['prefix' => 'penilaian'], function() {
 Route::group(['prefix' => 'mahasiswa'], function() {
     Route::get('/', 'MahasiswaController@index')->name('mahasiswa');
     // Route::get('/search', 'MahasiswaController@search')->name('mahasiswa.search');
-    // Route::get('/create', 'MahasiswaController@create')->name('mahasiswa.create');
+    Route::get('/create', 'MahasiswaController@create')->name('mahasiswa.create');
     // Route::get('/{id}', 'MahasiswaController@show')->name('mahasiswa.show');
     // Route::put('/', 'MahasiswaController@store')->name('mahasiswa.store');
+});
+
+//User
+Route::group(['prefix' => 'user'], function() {
+    Route::get('/', 'UserController@index')->name('user');
+    // Route::get('/search', 'UserController@search')->name('user.search');
+    Route::get('/create', 'UserController@create')->name('user.create');
+    // Route::get('/{id}', 'UserController@show')->name('user.show');
+    // Route::put('/', 'UserController@store')->name('user.store');
 });
 
 //Decission

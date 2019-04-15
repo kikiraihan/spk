@@ -11,8 +11,8 @@
             <div class="card">
                 <div class="card-header pl-3">All Mahasiswa </div>
                 <div class="card-body container">
-                    {{-- <a href="{{ route('mahasiswa.create') }}" class="btn btn-outline-primary btn-sm border border-white-50">New +</a> --}}
-                    {{-- <hr> --}}
+                    <a href="{{ route('mahasiswa.create') }}" class="btn btn-outline-primary btn-sm border border-white-50">New +</a>
+                    <hr>
                     <table class="table table-striped table-borderless border border-white-50 table-sm small">
                         <caption class="text-left ">Data setiap mahasiswa</caption>
                         <thead class="thead-light text-center">

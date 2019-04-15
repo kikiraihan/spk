@@ -20,12 +20,12 @@
 
                         <div class="row mb-1">
                             <div class="ml-3 form-inline">
-                                <select name="table" class="custom-select   mr-1">
+                                <select required name="table" class="custom-select custom-select-sm mr-1">
                                     <option value="" selected="selected" disabled="disabled" hidden="hidden">Table Name</option>
                                         <option class="m-2" value="Mahasiswa">Mahasiswa</option>
                                 </select>
 
-                                <select name="preference" class="custom-select   mr-1">
+                                <select required name="preference" class="custom-select custom-select-sm mr-1">
                                     <option value="" selected="selected" disabled="disabled" hidden="hidden">Preference</option>
                                     @foreach ($preference as $pre)
                                         <option class="m-2" value="{{$pre->id}}">{{$pre->judul}}</option>

@@ -11,17 +11,20 @@
             <a href="{{ route('home') }}" >Home</a>
         </li>
 
+        <li >
+            <a href="{{ route('mahasiswa') }}" >Mahasiswa</a>
+        </li>
+
         @role('Penilai')
         <li >
             <a href="{{ route('penilaianAlternatif') }}" >Penilaian</a>
         </li>
         @endrole
 
-        <li >
-            <a href="{{ route('mahasiswa') }}" >Mahasiswa</a>
-        </li>
-
         @role('Admin')
+        <li>
+            <a href="{{ route('user') }}">User</a>
+        </li>
         <li>
             <a href="{{ route('criteriaPreference') }}">Criteria-Preference</a>
         </li>

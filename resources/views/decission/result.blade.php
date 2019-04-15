@@ -158,61 +158,63 @@
                                     <th>No</th>
                                     <th>Bobot</th>
 
-                                    @foreach ($title as $t)
-                                        <th>{{ $t }}</th>
-                                    @endforeach
+                                    {{-- @foreach ($title as $t)
+                                    <th>{{ $t }}</th>
+                                    @endforeach --}}
 
                                     @foreach ($kolomGet as $kolom)
                                     <th class="{{ $kolom=='id'?'text-info font-weight-bold text-right':'text-center ' }}">{{ $kolom }}</td>
+                                        @endforeach
+
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @php $no=0;  @endphp
+                                    @foreach ($hasil as $index=>$m)
+                                    <tr class="{{ $no<=2?'text-success':'' }}">
+                                        <th>{{ ++$no }}</th>
+                                        <td class="text-center">{{ $rank[$m->id]['nilai'] }}</td>
+
+                                        {{-- @for ($z = 0; $z < count($matriks[$index])-1; $z++)
+                                        <td class="text-center">{{ $matriks[$index][$z]}}</td><-- baris matriks == index == (i)mahasiswa -->
+                                        @endfor --}}
+
+                                        @foreach ($kolomGet as $kolom)
+                                        <td class="
+                                            {{ $kolom=='id'?'text-info font-weight-bold text-right':'text-center ' }}
+                                        ">{{ $m->$kolom }}</td>
+                                        @endforeach
+
+                                        <td class="text-center">+-</td>
+                                    </tr>
                                     @endforeach
-
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                                @php $no=0;  @endphp
-                                @foreach ($hasil as $index=>$m)
-                                <tr>
-                                    <th>{{ ++$no }}</th>
-                                    <td class="text-center">{{ $rank[$m->id]['nilai'] }}</td>
-
-                                    @for ($z = 0; $z < count($matriks[$index])-1; $z++)
-                                        <td class="text-center">{{ $matriks[$index][$z]}}</td>{{-- baris matriks == index == (i)mahasiswa --}}
-                                    @endfor
-
-                                    @foreach ($kolomGet as $kolom)
-                                        <td class="{{ $kolom=='id'?'text-info font-weight-bold text-right':'text-center ' }}">{{ $m->$kolom }}</td>
-                                    @endforeach
-
-                                    <td class="text-center">+-</td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
+
+
                 </div>
 
 
             </div>
-
-
         </div>
     </div>
-</div>
 
 
-@endsection
+    @endsection
 
-@section('css-halaman')
-<style>
-    table tbody tr th{
-        text-align: center;
-        width: 1em;
-    }
-</style>
-@endsection
+    @section('css-halaman')
+    <style>
+        table tbody tr th{
+            text-align: center;
+            width: 1em;
+        }
+    </style>
+    @endsection
 
-@section('script-halaman')
+    @section('script-halaman')
 
-@endsection
+    @endsection
