@@ -12,8 +12,21 @@
                 <div class="card-header pl-3">Input Penilaian</div>
 
                 <div class="card-body container">
+                    <form action="{{ route('penilaianAlternatif.storeByAdmin') }}" method="post">
 
-                    <form action="{{ route('penilaianAlternatif.store') }}" method="post">
+
+                    <div class="col-md-4">
+                        <select name="id_penilai" class="custom-select custom-select-sm">
+                            <option value="1" selected="selected" hidden="hidden">Pilih Penilai</option>
+
+                            @foreach ($penilai as $p)
+                                <option value="{{$p->id}}">{{$p->name}}</option>
+                            @endforeach
+
+                        </select>
+                    </div>
+
+
                     <hr>
                     {{-- <h4></h4> --}}
                         <input type="hidden" name="_method" value="put">

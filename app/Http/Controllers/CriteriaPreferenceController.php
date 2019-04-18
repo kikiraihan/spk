@@ -103,6 +103,9 @@ class CriteriaPreferenceController extends Controller
      */
     public function destroy($id)
     {
-        //
+        CriteriaPreference::find($id)
+            ->delete()
+        ;
+        return redirect()->route('criteriaPreference');
     }
 }

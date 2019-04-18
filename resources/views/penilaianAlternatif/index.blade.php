@@ -38,9 +38,29 @@
                                         @endfor
                                     </td>
                                     <td>{{ $pre->ordo }}</td>
-                                    <td>
-                                        <a href="{{ route('penilaianAlternatif.show', ['id_preferensi'=>$pre->id]) }}" class="btn btn-sm btn-secondary">Lihat</a>
+
+                                    <td class="text-center dropdown dropleft">
+
+                                            <span class="btn btn-sm btn-light"data-toggle="dropdown">
+                                                ☰
+                                            </span>
+
+                                            <div class="dropdown-menu">
+
+
+                                                <a class="dropdown-item small" href="{{ route('penilaianAlternatif.show', ['id_preferensi'=>$pre->id]) }}">Lihat</a>
+
+                                                <form style="display: inline;" method="post" action="{{ route('penilaianAlternatif.destroy', ['id_preferensi'=>$pre->id]) }}">
+                                                    <input type="hidden" name="_method" value="DELETE">
+                                                    {{ csrf_field()}}
+                                                    <button class="dropdown-item small text-danger" >Hapus</button>
+                                                </form>
+
+                                            </div>
+
                                     </td>
+
+
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -72,8 +92,19 @@
                                     @endfor
                                 </td>
                                 <td>{{ $pre->ordo }}</td>
-                                <td>
-                                    <a href="{{ route('penilaianAlternatif.create', ['id_preferensi'=>$pre->id]) }}" class="btn btn-sm btn-info">Input+</a>
+                                <td class="text-center dropdown dropleft">
+
+                                        <span class="btn btn-sm btn-light"data-toggle="dropdown">
+                                            ☰
+                                        </span>
+
+                                        <div class="dropdown-menu">
+
+
+                                            <a class="dropdown-item small" href="{{ route('penilaianAlternatif.create', ['id_preferensi'=>$pre->id]) }}" class="btn btn-sm btn-info">Input +</a>
+
+                                        </div>
+
                                 </td>
                             </tr>
                             @endforeach

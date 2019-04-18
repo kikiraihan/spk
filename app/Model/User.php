@@ -33,4 +33,14 @@ class User extends Authenticatable
         $this->attributes['password'] =  bcrypt($password);
     }
 
+    public function scopeWherePenilaiBelumMenginput($query,$id_preferensi){
+        return $query->whereHas('PenilaianAlternatif',function($q) use($id_preferensi){
+            $q
+            ->where('id_preferensi', '<>', $id_preferensi);
+        })
+        ->where('kategori','Penilai')
+        ->orWhereDoesntHave('PenilaianAlternatif')
+        ->where('kategori','Penilai');
+    }
+
 }

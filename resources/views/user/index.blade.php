@@ -11,7 +11,7 @@
             <div class="card">
                 <div class="card-header pl-3">All User </div>
                 <div class="card-body container">
-                    <a href="{{ route('user.create') }}" class="btn btn-outline-primary btn-sm border border-white-50">New +</a>
+                    <a href="{{ route('user.create') }}" class="btn btn-outline-primary btn-sm border border-white-50">Create +</a>
                     <hr>
                     <table class="table table-striped table-borderless border border-white-50 table-sm small">
                             <caption class="text-left ">Data setiap admin</caption>
@@ -34,7 +34,24 @@
                                     <td>{{ $admin->$col }}</td>
                                     @endforeach
 
-                                    <td class="text-center">+-</td>
+                                    <td class="text-center dropdown dropleft">
+
+                                            <span class="btn btn-sm btn-light"data-toggle="dropdown">
+                                                ☰
+                                            </span>
+                                            <div class="dropdown-menu">
+
+                                                <form style="display: inline;" method="post" action="{{ route('user.destroy', ['id'=>$admin->id]) }}">
+                                                        <input type="hidden" name="_method" value="DELETE">
+                                                        {{ csrf_field()}}
+                                                    <button class="dropdown-item small text-danger" >Hapus</button>
+                                                </form>
+                                                <a class="dropdown-item small" href="#">-</a>
+
+                                            </div>
+
+                                    </td>
+
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -61,7 +78,25 @@
                                 <td>{{ $penilai->$col }}</td>
                                 @endforeach
 
-                                <td class="text-center">+-</td>
+                                <td class="text-center dropdown dropleft">
+
+                                        <span class="btn btn-sm btn-light"data-toggle="dropdown">
+                                            ☰
+                                        </span>
+                                        <div class="dropdown-menu">
+
+                                            <form style="display: inline;" method="post" action="{{ route('user.destroy', ['id'=>$penilai->id]) }}">
+                                                    <input type="hidden" name="_method" value="DELETE">
+                                                    {{ csrf_field()}}
+                                                <button class="dropdown-item small text-danger" >Hapus</button>
+                                            </form>
+                                            <a class="dropdown-item small" href="#">-</a>
+
+                                        </div>
+
+                                </td>
+
+
                             </tr>
                             @endforeach
                         </tbody>

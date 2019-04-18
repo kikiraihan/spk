@@ -11,7 +11,7 @@
             <div class="card">
                 <div class="card-header pl-3">All Preference </div>
                 <div class="card-body container">
-                    <a href="{{ route('criteriaPreference.create') }}" class="btn btn-outline-primary btn-sm border border-white-50">New +</a>
+                    <a href="{{ route('criteriaPreference.create') }}" class="btn btn-outline-primary btn-sm border border-white-50">Create +</a>
                     <hr>
                     <table class="table table-striped table-borderless border border-white-50 text-center table-sm small">
                         <caption class="text-left ">Preferensi kriteria pada beberapa kondisi/kasus.</caption>
@@ -48,7 +48,30 @@
                                     @endfor
                                 </td>
                                 <td>{{ $pre->ordo }}</td>
-                                <td>+-</td>
+
+                                <td class="text-center dropdown dropleft">
+
+                                        <span class="btn btn-sm btn-light"data-toggle="dropdown">
+                                            ☰
+                                        </span>
+
+                                        <div class="dropdown-menu">
+
+                                            <a class="dropdown-item small" href="{{ route('penilaianAlternatif.createByAdmin', ['id_preferensi'=>$pre->id]) }}">Input Manual</a>
+
+                                            <form style="display: inline;" method="post" action="{{ route('criteriaPreference.destroy', ['id_preferensi'=>$pre->id]) }}">
+                                                <input type="hidden" name="_method" value="DELETE">
+                                                {{ csrf_field()}}
+                                                <button class="dropdown-item small text-danger" >Hapus</button>
+                                            </form>
+
+                                        </div>
+
+                                </td>
+
+
+
+
                             </tr>
                             @endforeach
                         </tbody>

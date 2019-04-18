@@ -17,31 +17,44 @@ class UserController extends Controller
         $admin=$user['Admin'];
         $penilai=$user['Penilai'];
 
-        $columns = $this->removeIdTimestampKategoriPasswordAndRememberTokenCol(Schema::getColumnListing('users'));
+        $columns = $admin[0]->getFillable();unset($columns[3]);
+        // dd($columns);
+        // $columns = $this->removeIdTimestampKategoriPasswordAndRememberTokenCol(Schema::getColumnListing('users'));
+
 
         return view('user.index',compact(['admin','penilai','columns']));
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        $user=new User;
+        $columns = $user->getFillable();
+        // $columns['field'] = $user->getFillable();
+        // $columns['tipe'] = ['text',''];
+        // dd($columns);
+
+        return view('user.create',compact(['columns']));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
-        //
+
+        //validasi
+        // dd($request->all());
+
+        //simpan
+        $user=new User;
+        $columns = $user->getFillable();
+        foreach($columns as $col){
+            $user->$col=$request->$col;
+            $user->kategori=='Penilai'?$user->assignRole('Penilai'):$user->assignRole('Admin');
+        }
+        $user->save();
+
+        return redirect()->route('user');
+
     }
 
     /**
@@ -86,6 +99,9 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::find($id)
+            ->delete()
+        ;
+        return redirect()->route('user');
     }
 }

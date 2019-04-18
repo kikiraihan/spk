@@ -7,6 +7,7 @@ use App\Model\CriteriaPreference;
 use Illuminate\Support\Facades\Auth;
 use App\Model\Mahasiswa;
 use App\Model\PenilaianAlternatif;
+use App\Model\User;
 
 class PenilaianAlternatifController extends Controller
 {
@@ -37,6 +38,7 @@ class PenilaianAlternatifController extends Controller
         return view('penilaianAlternatif.create',compact(['mahasiswa','preferenceKriteria','id_preferensi']));
     }
 
+
     /**
      * Store a newly created resource in storage.
      *
@@ -58,6 +60,7 @@ class PenilaianAlternatifController extends Controller
         }
         return redirect()->route('penilaianAlternatif');
     }
+
 
     public function show($id_preferensi)
     {
@@ -101,8 +104,62 @@ class PenilaianAlternatifController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_preferensi)
     {
-        //
+        PenilaianAlternatif::
+            where('id_penilai',Auth::user()->id)
+            ->where('id_preferensi', $id_preferensi)
+            ->delete()
+        ;
+        return redirect()->route('penilaianAlternatif');
     }
+
+
+
+
+
+
+
+
+    public function createByAdmin($id_preferensi)
+    {
+        // $request->id_preferensi;
+        $preference=CriteriaPreference::where('id',$id_preferensi)->first(['id','judul','kriteria']);
+        $mahasiswa=Mahasiswa::all(['id','nama']);
+        $preferenceKriteria=json_decode($preference->kriteria);
+
+        $penilai=User::WherePenilaiBelumMenginput($id_preferensi)
+        ->get(['id','name']);
+
+        // dd($preference);
+        return view('penilaianAlternatif.createByAdmin',compact(['mahasiswa','preferenceKriteria','id_preferensi','penilai']));
+    }
+
+
+    public function storeByAdmin(Request $request)
+    {
+        // dd(json_encode($request->nilai[1]));
+
+        foreach ($request->nilai as $id_mahasiswa => $nilai)
+        {
+            $alternatif=new PenilaianAlternatif;
+            $alternatif->nilai=json_encode($nilai);
+            $alternatif->id_penilai=$request->id_penilai;
+            $alternatif->id_preferensi=$request->id_preferensi;
+            $alternatif->id_mahasiswa=$id_mahasiswa;
+            $alternatif->save();
+        }
+        return redirect()->route('criteriaPreference');
+    }
+
+
+
+
+
+
+
 }
+
+
+
+

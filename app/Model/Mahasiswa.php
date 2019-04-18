@@ -11,11 +11,6 @@ class Mahasiswa extends Model
         'nama' ,
         'jurusan',
         'alamat',
-        'agama',
-        'toefl',
-        'ipk',
-        'masak',
-        'kecantikan',
     ];
 
 

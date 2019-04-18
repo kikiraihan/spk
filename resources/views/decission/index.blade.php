@@ -1,5 +1,5 @@
 @extends('layouts.app',[
-'title'=>'new criteria preference',
+'title'=>'Decission Making',
 'bodyStyle'=>""
 ])
 
