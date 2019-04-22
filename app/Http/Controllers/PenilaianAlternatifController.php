@@ -128,10 +128,11 @@ class PenilaianAlternatifController extends Controller
         $mahasiswa=Mahasiswa::all(['id','nama']);
         $preferenceKriteria=json_decode($preference->kriteria);
 
-        $penilai=User::WherePenilaiBelumMenginput($id_preferensi)
+        $penilai=User::WherePenilaiSudahMenginput($id_preferensi);
+        $penilai=User::whereNotIn("id",$penilai)->where('kategori','penilai')
         ->get(['id','name']);
 
-        // dd($preference);
+        // dd($penilai);
         return view('penilaianAlternatif.createByAdmin',compact(['mahasiswa','preferenceKriteria','id_preferensi','penilai']));
     }
 

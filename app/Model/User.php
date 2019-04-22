@@ -43,4 +43,20 @@ class User extends Authenticatable
         ->where('kategori','Penilai');
     }
 
+    public function scopeWherePenilaiSudahMenginput($query,$id_preferensi){
+        $hasil=$query->whereHas('PenilaianAlternatif',function($q) use($id_preferensi){
+            $q
+            ->where('id_preferensi',  $id_preferensi);
+        })
+        ->get(['id']);
+        // dd($hasil);
+        $balik[]='';
+
+        foreach($hasil as $h){
+            $balik[]=$h->id;
+        }
+
+        return $balik;
+    }
+
 }
