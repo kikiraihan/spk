@@ -5,7 +5,7 @@
             ☰
         </a>
         @endauth
-        <a class="text-uppercase small" href="#" style="font-family: 'sans'">
+        <a class="text-uppercase small" href="{{ url('/') }}" style="font-family: 'sans'">
             {{-- {{ config('app.name', 'Laravel') }}  --}}
             SISPEK - Mahasiswa | Multicase Student Recomendation
         </a>
@@ -24,9 +24,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
             </li>
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-            </li>
+            </li> --}}
             @else
             <li class="nav-item dropdown d-sm-none d-lg-inline">
                 <a id="navbarDropdown" class="small nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
