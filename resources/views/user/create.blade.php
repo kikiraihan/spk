@@ -24,14 +24,27 @@
                                     <div class="col-sm-10">
 
                                         @if ($col=='kategori')
+
                                             <select required name="{{$col}}" class="custom-select custom-select-sm ">
-                                                <option class="m-2" value="Penilai">Penilai</option>
-                                                <option class="m-2" value="Admin">Admin</option>
+                                                <option class="m-2" value="">-Pilih-</option>
+                                                <option class="m-2" value="Penilai" {{old($col)=="Penilai"?"selected":"" }}>Penilai</option>
+                                                <option class="m-2" value="Admin" {{old($col)=="Admin"?"selected":"" }}>Admin</option>
                                             </select>
+
                                         @elseif ($col=='password')
-                                            <input name="{{$col}}" type="password" class="form-control form-control-sm" id="{{$col}}" placeholder="Masukan {{$col}}">
+                                            <input name="{{$col}}" type="password"
+                                            class="form-control form-control-sm {{ $errors->has($col) ? ' is-invalid' : '' }}" value="{{ old($col) }}"
+                                            id="{{$col}}" placeholder="Masukan {{$col}}">
                                         @else
-                                            <input name="{{$col}}" type="text" class="form-control form-control-sm" id="{{$col}}" placeholder="Masukan {{$col}}">
+                                            <input name="{{$col}}" type="text"
+                                            class="form-control form-control-sm {{ $errors->has($col) ? ' is-invalid' : '' }}" value="{{ old($col) }}"
+                                            id="{{$col}}" placeholder="Masukan {{$col}}">
+                                        @endif
+
+                                        @if ($errors->has($col))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>*{{ $errors->first($col) }}</strong>
+                                            </span>
                                         @endif
 
                                     </div>

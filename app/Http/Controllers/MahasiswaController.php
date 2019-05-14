@@ -36,6 +36,11 @@ class MahasiswaController extends Controller
     {
 
         //validasi
+        $this->validate($request, [
+            "nama" => "required",
+            "jurusan" =>"required",
+            "alamat" =>"required",
+        ]);
 
         //simpan
         $mahasiswa=new Mahasiswa;

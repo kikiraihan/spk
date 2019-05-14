@@ -43,6 +43,12 @@ class UserController extends Controller
 
         //validasi
         // dd($request->all());
+        $this->validate($request, [
+            "kategori" =>"required",
+            "name" =>"required",
+            "email" =>"required|email|unique:users",
+            "password" =>"required|min:8",
+        ]);
 
         //simpan
         $user=new User;

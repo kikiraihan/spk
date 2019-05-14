@@ -10,6 +10,9 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
+        {{-- fontawesome --}}
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
         <!-- Styles -->
         <style>
             html, body {
@@ -79,16 +82,20 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    <i class="fas fa-brain 2x"></i> SISPEK
                 </div>
 
-                <div class="links">
+                <p class="text-center" >
+                    Decission Support Sistem <b>: :</b> Multicase Student Recomendation
+                </p>
+
+                {{-- <div class="links">
                     <a href="https://laravel.com/docs">Documentation</a>
                     <a href="https://laracasts.com">Laracasts</a>
                     <a href="https://laravel-news.com">News</a>
                     <a href="https://forge.laravel.com">Forge</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+                </div> --}}
             </div>
         </div>
     </body>

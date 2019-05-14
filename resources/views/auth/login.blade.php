@@ -39,6 +39,7 @@
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
                                 @endif
+
                             </div>
                         </div>
 
@@ -66,6 +67,9 @@
                             </div>
                         </div>
                     </form>
+
+
+
                 </div>
             </div>
         </div>

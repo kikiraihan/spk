@@ -22,7 +22,15 @@
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label col-form-label-sm text-capitalize" for="{{$col}}">{{$col}} </label>
                                     <div class="col-sm-10">
-                                    <input name="{{$col}}" type="text" class="form-control form-control-sm" id="{{$col}}" placeholder="Masukan {{$col}}">
+                                    <input name="{{$col}}" type="text"
+                                    class="form-control form-control-sm {{ $errors->has($col) ? ' is-invalid' : '' }}"
+                                    id="{{$col}}" placeholder="Masukan {{$col}}" value="{{ old($col) }}"
+                                    >
+                                        @if ($errors->has($col))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>*{{ $errors->first($col) }}</strong>
+                                            </span>
+                                        @endif
                                     </div>
                                 </div>
                             @endforeach
@@ -34,6 +42,7 @@
 
 
                         </form>
+
 
 
                     </div>

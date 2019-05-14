@@ -6,8 +6,9 @@
         </a>
         @endauth
         <a class="text-uppercase small" href="{{ url('/') }}" style="font-family: 'sans'">
-            {{-- {{ config('app.name', 'Laravel') }}  --}}
-            SISPEK - Mahasiswa | Multicase Student Recomendation
+            {{-- {{ config('app.name', 'Laravel') }} | --}}
+            {{-- SISPEK - Mahasiswa | --}}
+            Multicase Student Recomendation
         </a>
 
 
