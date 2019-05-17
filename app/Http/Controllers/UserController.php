@@ -42,13 +42,15 @@ class UserController extends Controller
     {
 
         //validasi
-        // dd($request->all());
+
         $this->validate($request, [
-            "kategori" =>"required",
-            "name" =>"required",
+            "kategori" =>"required|in:Penilai,Admin",
+            "name" =>"required|string",
             "email" =>"required|email|unique:users",
             "password" =>"required|min:8",
         ]);
+        echo "<p class='ini'>valid</p>";
+        dd($request->all());
 
         //simpan
         $user=new User;

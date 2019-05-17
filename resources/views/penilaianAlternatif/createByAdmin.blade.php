@@ -16,7 +16,8 @@
 
 
                     <div class="col-md-4">
-                        <select name="id_penilai" class="custom-select custom-select-sm">
+                        <label for="" class="small d-inline-block">Penilaian atas nama :</label>
+                        <select name="id_penilai" class="custom-select custom-select-sm d-inline">
                             <option value="1" selected="selected" hidden="hidden">Pilih Penilai</option>
 
                             @foreach ($penilai as $p)

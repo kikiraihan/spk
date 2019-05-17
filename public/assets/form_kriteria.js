@@ -334,8 +334,21 @@ function btnProceed() {
 
 
 $("#n").change(function(){
+
 	var x = $(this).children("option:selected").val();
-	tampilInputKriteria(x);
+
+	if(x=="1"){
+		$("#inputKriteria").empty();
+		$("#inputKriteria").append('Invalid, batas bawah');
+	}
+	else if(x=="11"){
+		$("#inputKriteria").empty();
+		$("#inputKriteria").append('Invalid, batas atas');
+	}
+	else{
+		tampilInputKriteria(x);
+	}
+
 })
 
 

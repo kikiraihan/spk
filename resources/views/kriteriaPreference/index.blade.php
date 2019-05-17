@@ -57,7 +57,7 @@
 
                                         <div class="dropdown-menu">
 
-                                            <a class="dropdown-item small" href="{{ route('penilaianAlternatif.createByAdmin', ['id_preferensi'=>$pre->id]) }}">Input Manual</a>
+                                            <a class="dropdown-item small" href="{{ route('penilaianAlternatif.createByAdmin', ['id_preferensi'=>$pre->id]) }}">Penilaian Manual</a>
 
                                             <form style="display: inline;" method="post" action="{{ route('criteriaPreference.destroy', ['id_preferensi'=>$pre->id]) }}">
                                                 <input type="hidden" name="_method" value="DELETE">

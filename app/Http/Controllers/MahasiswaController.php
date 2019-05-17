@@ -37,10 +37,12 @@ class MahasiswaController extends Controller
 
         //validasi
         $this->validate($request, [
-            "nama" => "required",
-            "jurusan" =>"required",
+            "nama" => "required|max:25",
+            "jurusan" =>"required|max:25",
             "alamat" =>"required",
         ]);
+        echo "<p class='ini'>valid</p>";
+        dd($request->all());
 
         //simpan
         $mahasiswa=new Mahasiswa;

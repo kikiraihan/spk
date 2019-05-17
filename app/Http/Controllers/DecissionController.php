@@ -8,6 +8,7 @@ use App\Model\CriteriaPreference;
 use Illuminate\Support\Facades\DB;
 use App\Traits\manipulasiMatriksTopsis;
 use App\Traits\manipulasiModelPenilaianAlternatif;
+use App\Rules\DateDecissionGenerateRule;
 
 class DecissionController extends Controller
 {
@@ -39,9 +40,23 @@ class DecissionController extends Controller
 
     public function generate(Request $request)
     {
-        // dd($request->all());
 
-        //ambil bobot dan title
+        // {{-- -----------------  UNTUK TIS    -------------- --}}
+        $this->validate($request, [
+            'date' => new DateDecissionGenerateRule,
+            'table' => "required",
+            'preference' => "required",
+            ]);
+
+        // echo "valid";
+        // dd($request->all());
+        // {{-- -----------------  UNTUK TIS    -------------- --}}
+
+
+
+
+
+        //AMBIL BOBOT DAN TITLE
         $preference=CriteriaPreference::with('penilaianAlternatif')->find($request->preference);
 
         //decode semua json nilai, menjadi collection

@@ -25,10 +25,11 @@
 
                                         @if ($col=='kategori')
 
-                                            <select required name="{{$col}}" class="custom-select custom-select-sm ">
+                                            <select  name="{{$col}}" class="custom-select custom-select-sm {{ $errors->has($col) ? ' is-invalid' : '' }}">
                                                 <option class="m-2" value="">-Pilih-</option>
                                                 <option class="m-2" value="Penilai" {{old($col)=="Penilai"?"selected":"" }}>Penilai</option>
                                                 <option class="m-2" value="Admin" {{old($col)=="Admin"?"selected":"" }}>Admin</option>
+                                                <option class="m-2" value="Wikwik" {{old($col)=="Wikwik"?"selected":"" }}>Wikwik(salah)</option>
                                             </select>
 
                                         @elseif ($col=='password')
