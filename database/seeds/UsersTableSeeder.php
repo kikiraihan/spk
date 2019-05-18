@@ -17,6 +17,11 @@ class UsersTableSeeder extends Seeder
             $user->name= $user->id==1?'Kiki':$user->name;
             $user->email= $user->id==1?'mohzulkiflikatili@gmail.com':$user->email;
             $user->kategori= $user->id==1?'Penilai':$user->kategori;
+
+            $user->name= $user->id==2?'admin':$user->name;
+            $user->email= $user->id==2?'admin@gmail.com':$user->email;
+            $user->kategori= $user->id==2?'Admin':$user->kategori;
+
             $user->kategori=='Penilai'?$user->assignRole('Penilai'):$user->assignRole('Admin');
             $user->save();
         });
