@@ -28,9 +28,8 @@
                                     <option class="m-2" value="Mahasiswa">Mahasiswa</option>
                                 </select> --}}
 
-                                <select id="n" name="n" class="custom-select custom-select-sm mr-1">
+                                {{-- <select id="n" name="n" class="custom-select custom-select-sm mr-1">
                                     <option value="" selected="selected" disabled="disabled" hidden="hidden">Pilih jumlah kriteria</option>
-                                    <option value="1">1-Batas bawah</option>
                                     <option value="2">2-Dua</option>
                                     <option value="3">3-Tiga</option>
                                     <option value="4">4-Empat</option>
@@ -40,8 +39,12 @@
                                     <option value="8">8-Delapan</option>
                                     <option value="9">9-Sembilan</option>
                                     <option value="10">10-Sepuluh</option>
-                                    <option value="11">11-Batas atas</option>
-                                </select>
+                                </select> --}}
+
+                                {{-- -----------------  UNTUK TIS    -------------- --}}
+                                <input type="text" id="n" name="n" class="form-control form-control-sm mr-1 col-2" placeholder="jumlah">
+                                {{-- -----------------  UNTUK TIS    -------------- --}}
+
                             </div>
                         </div>
                         <div id="inputKriteria" class="pl-0 col-md-6 pb-2"></div>

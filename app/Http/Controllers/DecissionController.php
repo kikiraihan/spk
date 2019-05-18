@@ -57,6 +57,7 @@ class DecissionController extends Controller
 
 
         //AMBIL BOBOT DAN TITLE
+        //find preference
         $preference=CriteriaPreference::with('penilaianAlternatif')->find($request->preference);
 
         //decode semua json nilai, menjadi collection

@@ -314,7 +314,12 @@ function btnProceed() {
 		 	kriteria.push($(this).val());
 		 });
 
-		var x = $("#n").children("option:selected").val();
+
+		//----------  UNTUK TIS    -------------
+		var x = $("#n").val();
+		//----------  UNTUK TIS    -------------
+
+		// var x = $("#n").children("option:selected").val();
 		var matriks = buatMatriks(x);
 
 		$("#wadahMatriksNormalised").empty();//seandainya so sampe normalisasi, hapus normalisasi tampilan
@@ -333,23 +338,41 @@ function btnProceed() {
 // });
 
 
+
+// {{-- -----------------  UNTUK TIS    -------------- --}}
 $("#n").change(function(){
 
-	var x = $(this).children("option:selected").val();
-
-	if(x=="1"){
+	var x = $(this).keyup().val();
+	if(isNaN(x)){
 		$("#inputKriteria").empty();
-		$("#inputKriteria").append('Invalid, batas bawah');
-	}
-	else if(x=="11"){
-		$("#inputKriteria").empty();
-		$("#inputKriteria").append('Invalid, batas atas');
+		$("#inputKriteria").append('Error, bukan angka');
 	}
 	else{
-		tampilInputKriteria(x);
+		if(parseInt(x)<=1){
+			$("#inputKriteria").empty();
+			$("#inputKriteria").append('Invalid, batas bawah');
+		}
+		else if(parseInt(x)>=11){
+			$("#inputKriteria").empty();
+			$("#inputKriteria").append('Invalid, batas atas');
+		}
+		else{
+			tampilInputKriteria(x);
+		}
 	}
 
 })
+// {{-- -----------------  UNTUK TIS    -------------- --}}
+
+
+
+
+// $("#n").change(function(){
+
+// 	var x = $(this).children("option:selected").val();
+// 	tampilInputKriteria(x);
+
+// })
 
 
 /*
