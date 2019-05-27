@@ -34,14 +34,14 @@
 
 
                                 {{-- -----------------  UNTUK TIS    -------------- --}}
-                                <input type="date" name="date" value="{{old('date')}}"
+                                {{-- <input type="date" name="date" value="{{old('date')}}"
                                 class="form-control-sm form-control {{ $errors->has('date') ? ' is-invalid' : '' }}">
 
                                 @if ($errors->has('date'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>*{{ $errors->first('date') }}</strong>
                                     </span>
-                                @endif
+                                @endif --}}
                                 {{-- -----------------  UNTUK TIS    -------------- --}}
 
 

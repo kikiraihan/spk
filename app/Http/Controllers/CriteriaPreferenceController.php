@@ -34,7 +34,7 @@ class CriteriaPreferenceController extends Controller
     public function store(Request $request)
     {
         //validasi
-        // dd($request->all());
+        dd($request->all());
 
 
         //pembuatan variabel

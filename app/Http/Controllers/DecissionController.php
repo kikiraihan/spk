@@ -42,11 +42,11 @@ class DecissionController extends Controller
     {
 
         // {{-- -----------------  UNTUK TIS    -------------- --}}
-        $this->validate($request, [
-            'date' => new DateDecissionGenerateRule,
-            'table' => "required",
-            'preference' => "required",
-            ]);
+        // $this->validate($request, [
+        //     'date' => new DateDecissionGenerateRule,
+        //     'table' => "required",
+        //     'preference' => "required",
+        //     ]);
 
         // echo "valid";
         // dd($request->all());

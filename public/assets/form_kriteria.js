@@ -340,39 +340,39 @@ function btnProceed() {
 
 
 // {{-- -----------------  UNTUK TIS    -------------- --}}
-$("#n").change(function(){
+// $("#n").change(function(){
 
-	var x = $(this).keyup().val();
-	if(isNaN(x)){
-		$("#inputKriteria").empty();
-		$("#inputKriteria").append('Error, bukan angka');
-	}
-	else{
-		if(parseInt(x)<=1){
-			$("#inputKriteria").empty();
-			$("#inputKriteria").append('Invalid, batas bawah');
-		}
-		else if(parseInt(x)>=11){
-			$("#inputKriteria").empty();
-			$("#inputKriteria").append('Invalid, batas atas');
-		}
-		else{
-			tampilInputKriteria(x);
-		}
-	}
+// 	var x = $(this).keyup().val();
+// 	if(isNaN(x)){
+// 		$("#inputKriteria").empty();
+// 		$("#inputKriteria").append('Error, bukan angka');
+// 	}
+// 	else{
+// 		if(parseInt(x)<=1){
+// 			$("#inputKriteria").empty();
+// 			$("#inputKriteria").append('Invalid, batas bawah');
+// 		}
+// 		else if(parseInt(x)>=11){
+// 			$("#inputKriteria").empty();
+// 			$("#inputKriteria").append('Invalid, batas atas');
+// 		}
+// 		else{
+// 			tampilInputKriteria(x);
+// 		}
+// 	}
 
-})
+// })
 // {{-- -----------------  UNTUK TIS    -------------- --}}
 
 
 
 
-// $("#n").change(function(){
+$("#n").change(function(){
 
-// 	var x = $(this).children("option:selected").val();
-// 	tampilInputKriteria(x);
+	var x = $(this).children("option:selected").val();
+	tampilInputKriteria(x);
 
-// })
+})
 
 
 /*

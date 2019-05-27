@@ -47,7 +47,7 @@ class UserController extends Controller
             "kategori" =>"required|in:Penilai,Admin",
             "name" =>"required|string",
             "email" =>"required|email|unique:users",
-            "password" =>"required|min:8",
+            "password" =>"required|min:6",
         ]);
         echo "<p class='ini'>valid</p>";
         dd($request->all());
